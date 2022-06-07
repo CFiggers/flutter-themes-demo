@@ -1,0 +1,27 @@
+(ns themes-demo.main
+  ;; pure dart package are imported using string
+  (:require ["package:flutter/material.dart" :as m]
+            ["package:flutter/widgets.dart" :as w]
+            ["package:flutter/painting.dart" :as p]
+            ["package:flutter/rendering.dart" :as r]
+            ["dart:ui" :as ui]
+            [cljd.flutter.alpha :as flutter]))
+
+(def primary-color
+  (.shade800 m.Colors/blue))
+
+(defn main []
+  (m/runApp
+   (m/MaterialApp
+    :title "Name"
+    :theme (m/ThemeData
+            :brightness ui.Brightness/dark
+            :primaryColor primary-color)
+    :home (m/Scaffold
+           :appBar (m/AppBar
+                    :title (w/Text "Flutter layout demo"))
+           :body (w/ListView
+                  :children [(w/Text "Flutter layout demo"
+                                     :style (p/TextStyle
+                                             :color primary-color
+                                             :fontSize 32.0))])))))
